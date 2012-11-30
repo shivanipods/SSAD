@@ -1,0 +1,14 @@
+{{left_sidebar_enabled,right_sidebar_enabled=False,False}}
+ {{extend 'layout.html'}}
+ <a href="index">Home</a>
+{{=form}}
+
+<br>
+<h3><a href="relate"> Relate Employees </a></h3>
+</br>
+<h5>current Employees</h5>
+<ul>
+{{for emps in emp:}}
+{{=LI(A(emps.Name, _href=URL("graph", args=emps.id)))}}
+{{pass}}
+</ul>

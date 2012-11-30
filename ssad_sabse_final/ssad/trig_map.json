@@ -1,0 +1,1 @@
+{"name": "CEO", "children": [{"name": "manager", "children": [{"name": "Employee1"}, {"name": "Employee2"}]}]}

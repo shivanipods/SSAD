@@ -1,0 +1,80 @@
+timestamp: 2012-10-13T17:40:29.657323
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2012-10-13T17:40:29.777109
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-10-13T17:40:29.858146
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE
+);
+success!
+timestamp: 2012-10-13T17:40:29.989141
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group(id) ON DELETE CASCADE,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2012-10-13T17:40:30.079213
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2012-10-13T17:40:30.220576
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user(id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2012-10-13T17:43:42.583807
+CREATE TABLE Employee(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name CHAR(512)
+);
+success!
+timestamp: 2012-10-13T19:03:08.265892
+ALTER TABLE Employee ADD emp_id CHAR(512) UNIQUE;
+timestamp: 2012-10-13T19:09:53.081074
+ALTER TABLE Employee ADD emp_id INTEGER;
+timestamp: 2012-10-13T19:09:53.268746
+ALTER TABLE Employee ADD importance_val INTEGER;
+timestamp: 2012-10-13T19:12:18.142661
+ALTER TABLE Employee ADD designation CHAR(512);
+timestamp: 2012-10-13T19:12:18.274965
+ALTER TABLE Employee ADD email_id CHAR(512);
+timestamp: 2012-10-13T19:12:18.363529
+ALTER TABLE Employee ADD password CHAR(512);
+timestamp: 2012-10-13T21:50:57.139510
+CREATE TABLE Relation(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Emp1_id INTEGER REFERENCES Employee(id) ON DELETE CASCADE,
+    Emp2_id INTEGER REFERENCES Employee(id) ON DELETE CASCADE
+);
+success!
